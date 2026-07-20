@@ -29,17 +29,15 @@ public class PersonneResource {
     @Inject
     EntityManager em;
 
-    /**
-     * Récupère toutes les personnes (toutes sous-classes confondues).
-     */
+
+     // Récupère toutes les personnes .
     @GET
     public List<Personne> listAll() {
         return em.createQuery("FROM Personne", Personne.class).getResultList();
     }
 
-    /**
-     * Récupère une personne par son ID.
-     */
+
+     //Récupère une personne par son ID.
     @GET
     @Path("/{id}")
     public Response getOne(@PathParam("id") Integer id) {
@@ -52,10 +50,8 @@ public class PersonneResource {
         return Response.ok(personne).build();
     }
 
-    /**
-     * Crée une nouvelle personne (envoyer un Enseignant ou un Etudiant fonctionne aussi
-     * grâce à l'héritage, tant que le client indique le bon sous-type via JSON).
-     */
+
+     //Crée une nouvelle personne (envoyer un Enseignant ou un Etudiant fonctionne aussi
     @POST
     @Transactional
     public Response create(Personne personne) {
@@ -68,9 +64,8 @@ public class PersonneResource {
         return Response.status(Response.Status.CREATED).entity(personne).build();
     }
 
-    /**
-     * Met à jour les champs communs d'une personne existante.
-     */
+
+     //Met à jour les champs communs d'une personne existante.
     @PUT
     @Path("/{id}")
     @Transactional
@@ -90,9 +85,8 @@ public class PersonneResource {
         return Response.ok(personne).build();
     }
 
-    /**
-     * Supprime une personne.
-     */
+
+     //Supprime une personne.
     @DELETE
     @Path("/{id}")
     @Transactional
