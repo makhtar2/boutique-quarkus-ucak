@@ -8,6 +8,11 @@ Voici le plan d'apprentissage structuré étape par étape sous forme de guides 
 
 ## 🗺️ Plan d'Apprentissage Étape par Étape
 
+### 🧰 [Installation : de la base de données au lancement en mode dev](./docs/installation_base_de_donnees.md)
+*   À faire en premier si vous clonez/forkez ce projet pour la première fois.
+*   Créer la base MySQL (Docker ou installation locale) et lancer `./mvnw quarkus:dev`.
+*   Dépannage des erreurs de connexion les plus courantes.
+
 ### 🚀 [Étape 1 : Introduction à Quarkus](./docs/etape1_introduction_quarkus.md)
 *   Qu'est-ce que Quarkus et pourquoi est-il si rapide (Supersonic Subatomic Java) ?
 *   Structure générale du projet [boutique-quarkus](.).

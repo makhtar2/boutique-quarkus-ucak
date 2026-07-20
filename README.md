@@ -6,6 +6,7 @@ If you want to learn more about Quarkus, please visit its website: <https://quar
 
 ## Guide d'apprentissage & contribution
 
+- Installation de la base de données et lancement en mode dev : [docs/installation_base_de_donnees.md](./docs/installation_base_de_donnees.md)
 - Guide pas-à-pas du projet : [README_GUIDE.md](./README_GUIDE.md)
 - Vous travaillez à plusieurs sur ce dépôt ? Lisez le [guide de contribution](./CONTRIBUTING.md) avant de forker.
 
