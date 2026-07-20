@@ -3,39 +3,28 @@ package sn.edu.ucak.dar.entities;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
-import lombok.NoArgsConstructor;
-import java.time.LocalDateTime;
-import java.io.Serializable;
-import java.util.Set;
 
-@Entity
-@Table(name = "facture")
+import java.time.Instant;
+
 @Getter
 @Setter
-@NoArgsConstructor
-public class Facture implements Serializable {
-
+@Entity
+@Table(name = "facture")
+public class Facture {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id", nullable = false)
     private Integer id;
 
-    @Column(nullable = false, unique = true, length = 20)
-    private String numero;
-
-    @Column(nullable = false)
-    private LocalDateTime dateFacture;
-
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "client_id", nullable = false)
     private Client client;
 
-    @OneToMany(mappedBy = "facture", cascade = CascadeType.ALL)
-    private Set<LigneArticle> ligneArticles;
+    @Column(name = "dateFacture", nullable = false)
+    private Instant dateFacture;
 
-    @PrePersist
-    public void prePersist() {
-        if (dateFacture == null) {
-            dateFacture = LocalDateTime.now();
-        }
-    }
+    @Column(name = "numero", nullable = false, length = 20)
+    private String numero;
+
+
 }

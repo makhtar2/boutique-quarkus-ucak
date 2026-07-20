@@ -2,30 +2,23 @@ package sn.edu.ucak.dar.entities;
 
 import jakarta.persistence.*;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
-
-@Entity
-@Table(name = "marque")
 @Getter
 @Setter
-@NoArgsConstructor
-public class Marque implements Serializable {
-
+@Entity
+@Table(name = "marque")
+public class Marque {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id", nullable = false)
     private Integer id;
 
-    @Column(nullable = false, length = 100)
+    @Column(name = "nom", nullable = false, length = 100)
     private String nom;
 
-    @Column(length = 500)
+    @Column(name = "description", length = 500)
     private String description;
 
-    @OneToMany(mappedBy = "marque")
-    private List<Produit> produits = new ArrayList<>();
+
 }

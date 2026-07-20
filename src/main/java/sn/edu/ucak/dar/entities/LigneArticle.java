@@ -3,34 +3,30 @@ package sn.edu.ucak.dar.entities;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
-import lombok.NoArgsConstructor;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import java.io.Serializable;
-
-@Entity
-@Table(name = "ligne_article")
 @Getter
 @Setter
-@NoArgsConstructor
-public class LigneArticle implements Serializable {
-
+@Entity
+@Table(name = "ligne_article")
+public class LigneArticle {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id", nullable = false)
     private Integer id;
 
-    @Column(nullable = false)
-    private Integer quantite;
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "facture_id", nullable = false)
+    private Facture facture;
 
     @Column(name = "prix_unitaire", nullable = false)
     private Double prixUnitaire;
 
-    @ManyToOne
-    @JoinColumn(name = "facture_id", nullable = false)
-    @JsonIgnoreProperties("ligneArticles")
-    private Facture facture;
-
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "produit_id", nullable = false)
     private Produit produit;
+
+    @Column(name = "quantite", nullable = false)
+    private Integer quantite;
+
+
 }

@@ -2,32 +2,26 @@ package sn.edu.ucak.dar.entities;
 
 import jakarta.persistence.*;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.time.LocalDateTime;
+import java.time.Instant;
 
-@Entity
-@Table(name = "carte")
 @Getter
 @Setter
-@NoArgsConstructor
+@Entity
+@Table(name = "carte")
 public class Carte {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id", nullable = false)
     private Integer id;
 
-    @Column(nullable = false)
-    private LocalDateTime dateCreation;
-
-    @OneToOne
-    @JoinColumn(nullable = false)
+    @OneToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "proprietaire_id", nullable = false)
     private Client proprietaire;
 
-    @PrePersist
-    public void prePersist() {
-        if (dateCreation == null) {
-            dateCreation = LocalDateTime.now();
-        }
-    }
+    @Column(name = "dateCreation", nullable = false)
+    private Instant dateCreation;
+
+
 }
